@@ -7,40 +7,43 @@ import java.util.Locale;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author victor
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private enum OperatorType {NONE, ADD, SUBTRACT, MULTIPLY, DIVIDE}
+    private enum OperatorType {
+        NONE, ADD, SUBTRACT, MULTIPLY, DIVIDE
+    }
 
     private double accumulator, operand;
     private OperatorType operator;
     private char decimalSeparator;
-    private boolean erase; 
-    
+    private boolean erase;
+
     public MainFrame() {
         initComponents();
         initMyFields();
     }
-    public void initMyFields(){
-        accumulator =0;
+
+    public void initMyFields() {
+        accumulator = 0;
         operand = 0;
         operator = OperatorType.NONE;
         erase = false;
         decimalSeparator = getDecimalSeparator();
     }
-    
-    public char getDecimalSeparator(){
+
+    public char getDecimalSeparator() {
         DecimalFormatSymbols dfs = new DecimalFormatSymbols(
-        Locale.getDefault());
+                Locale.getDefault());
         return dfs.getDecimalSeparator();
     }
-    private void caculateResult(){
+
+    private void caculateResult() {
         operand = Double.parseDouble(textFieldDisplay.getText());
-        switch(operator){
+        switch (operator) {
             case ADD:
                 accumulator += operand;
                 break;
@@ -57,16 +60,17 @@ public class MainFrame extends javax.swing.JFrame {
                 accumulator = operand;
         }
     }
-    
-    private void displayResult(){
+
+    private void displayResult() {
         textFieldDisplay.setText("" + accumulator);
     }
-    private void eraseIfNeededAndWriterNumber(String numberStr){
-        if(erase){
+
+    private void eraseIfNeededAndWriterNumber(String numberStr) {
+        if (erase) {
             textFieldDisplay.setText("");
             erase = false;
         }
-        textFieldDisplay.setText(textFieldDisplay.getText() +  numberStr);
+        textFieldDisplay.setText(textFieldDisplay.getText() + numberStr);
     }
 
     /**
@@ -318,21 +322,21 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         eraseIfNeededAndWriterNumber("2");
-        
+
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-  
+
         eraseIfNeededAndWriterNumber("1");
-        
+
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-       eraseIfNeededAndWriterNumber("3");
+        eraseIfNeededAndWriterNumber("3");
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-       eraseIfNeededAndWriterNumber("5");
+        eraseIfNeededAndWriterNumber("5");
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
@@ -340,7 +344,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-       eraseIfNeededAndWriterNumber("6");
+        eraseIfNeededAndWriterNumber("6");
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
@@ -368,44 +372,55 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-       erase = true;
-       caculateResult();
-       displayResult();
-       operator = OperatorType.ADD;
-       
+        if(!erase){
+        erase = true;
+        caculateResult();
+        displayResult();
+        operator = OperatorType.ADD;
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnSubtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubtractActionPerformed
+        if(!erase){
         erase = true;
-       caculateResult();
-       displayResult();
-       operator = OperatorType.SUBTRACT;
+        caculateResult();
+        displayResult();
+        operator = OperatorType.SUBTRACT;
+        }
     }//GEN-LAST:event_btnSubtractActionPerformed
 
     private void btnMultiplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplyActionPerformed
+        if(!erase){
         erase = true;
-       caculateResult();
-       displayResult();
-       operator = OperatorType.MULTIPLY;
+        caculateResult();
+        displayResult();
+        operator = OperatorType.MULTIPLY;
+        }
     }//GEN-LAST:event_btnMultiplyActionPerformed
 
     private void btnDivideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivideActionPerformed
+        if(!erase){
         erase = true;
-       caculateResult();
-       displayResult();
-       operator = OperatorType.DIVIDE;
+        caculateResult();
+        displayResult();
+        operator = OperatorType.DIVIDE;
+        }
     }//GEN-LAST:event_btnDivideActionPerformed
 
     private void btnEqualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualActionPerformed
-        // TODO add your handling code here:
+        if(!erase){
+        erase = true;
+        caculateResult();
+        displayResult();
+        }
     }//GEN-LAST:event_btnEqualActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-       String s = textFieldDisplay.getText();
-       if(s.length() > 0){
-       String subS = s.substring(0, s.length()-1);
-       textFieldDisplay.setText(subS);
-       }
+        String s = textFieldDisplay.getText();
+        if (s.length() > 0) {
+            String subS = s.substring(0, s.length() - 1);
+            textFieldDisplay.setText(subS);
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
