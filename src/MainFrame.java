@@ -1,4 +1,5 @@
 
+import java.math.BigDecimal;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
@@ -62,7 +63,15 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void displayResult() {
-        textFieldDisplay.setText("" + accumulator);
+        String s = ""+ accumulator;
+        if (s.contains(".")){
+            s = s.replaceAll("0+$","");
+            s = s.replaceAll(".$", "");
+        }
+        textFieldDisplay.setText(s);
+       /* BigDecimal number = new BigDecimal(accumulator);
+        textFieldDisplay.setText(number.stripTrailingZeros().toPlainString());*/
+        
     }
 
     private void eraseIfNeededAndWriterNumber(String numberStr) {
