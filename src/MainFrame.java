@@ -44,7 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void caculateResult() {
         String s = textFieldDisplay.getText();
-        s = s.replaceAll("" + decimalSeparator, ".");
+        s = s.replaceAll("\\" + decimalSeparator, ".");
         if (s.isEmpty()){
             s = "0";
         }
